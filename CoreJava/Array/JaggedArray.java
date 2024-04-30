@@ -15,11 +15,21 @@ public class JaggedArray {
             }
         }
         //Print Array
-        for(int i = 0 ; i< jaggedArray.length ; i++)
+        // for(int i = 0 ; i< jaggedArray.length ; i++)
+        // {
+        //     for(int j = 0 ; j< jaggedArray[i].length ; j++)
+        //     {
+        //        System.out.println(jaggedArray[i][j]+" ");
+        //     }
+        //     System.out.println();
+        // }
+        
+        //Enhanced Loop
+        for(int n[] : jaggedArray)
         {
-            for(int j = 0 ; j< jaggedArray[i].length ; j++)
+            for (int val : n)
             {
-               System.out.println(jaggedArray[i][j]+" ");
+                System.out.println(val);
             }
             System.out.println();
         }
