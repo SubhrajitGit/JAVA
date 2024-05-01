@@ -1,5 +1,3 @@
-package CoreJava.Array;
-
 public class JaggedArray {
     public static void main(String[] args) {
         int jaggedArray[][]= new int[3][];
