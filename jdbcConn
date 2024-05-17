@@ -1,0 +1,100 @@
+package com.axis;
+ 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+ 
+public class MySQLDB {
+ 
+	public static void main(String[] args) throws ClassNotFoundException, SQLException  {
+		// TODO Auto-generated method stub
+		//Step 1: Loading & Registering the Driver
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		//Step 2: Establishing the Connection
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/axis", "root", "root");
+		//Step 3: Creating & Executing Query
+		String selectQuery  = "select * from employee";
+		Statement stmt = conn.createStatement();
+		//Step 4: Processing the Result
+		ResultSet rs = stmt.executeQuery(selectQuery);
+		System.out.println("ID \t Name \t Email \t\t Mobile ");
+		while(rs.next()) {
+			System.out.println(rs.getInt("emp_id")+"\t"+rs.getString("emp_name")+"\t"+rs.getString(3)+"\t"+rs.getLong(4));
+		}
+		//Step 5: Closing all Resources
+		rs.close();
+		stmt.close();
+		conn.close();
+	}
+ 
+}
+
+
+
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+ 
+public class MySQLCRUD {
+ 
+	public static void main(String[] args) throws Exception {
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/axis", "root", "root");
+		//Insert Operation
+		String insertQuery ="insert into employee (emp_id,emp_name) values (?,?)";
+		PreparedStatement pstmt = conn.prepareStatement(insertQuery);
+		
+		int insertStatus = 0;
+		pstmt.setInt(1, 102);
+		pstmt.setString(2, "Test");
+		insertStatus=pstmt.executeUpdate();
+		
+		if (insertStatus>0) {
+			System.out.println( insertStatus+" Record Insertted Successfully");
+		}
+		
+		//Update Operation
+		String updateQuery ="update employee set email='test@gmail.com',mobile=9089674523 where emp_id=?";
+		pstmt = conn.prepareStatement(updateQuery);
+		
+		int updateStatus = 0;
+		pstmt.setInt(1, 102);
+		insertStatus=pstmt.executeUpdate();
+		
+		if (updateStatus>0) {
+			System.out.println( updateStatus+" Record Updated Successfully");
+		}
+		// Select (or) Read Operation
+		String selectQuery = "select * from employee";
+		Statement stmt = conn.createStatement();
+		
+		ResultSet rs = stmt.executeQuery(selectQuery);
+		System.out.println("ID \t Name \t Email \t\t Mobile ");
+		while (rs.next()) {
+			System.out.println(rs.getInt("emp_id") + "\t" + rs.getString("emp_name") + "\t" + rs.getString(3) + "\t"
+					+ rs.getLong(4));
+		}
+		
+		
+		rs.close();
+		stmt.close();
+		conn.close();
+ 
+	}
+ 
+}
+ 
+ 
+ [15:21] SivaOS (Unverified)
+//Delete Operation
+		String deleteQuery = "delete from employee where emp_id=";
+		boolean result = stmt.execute(deleteQuery+"103");
+ like 1

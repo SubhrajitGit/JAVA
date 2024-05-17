@@ -1,0 +1,7 @@
+Create a employee table (If it is not already created) with following columns
+•	Emp_id
+•	Emp_name
+•	Email
+•	Mobile
+Execute the given code for all CRUD operations
+Add a new column namely dob (date). It should be not null column

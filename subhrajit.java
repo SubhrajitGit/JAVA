@@ -1,6 +1,14 @@
 public class subhrajit{
 	public static void main(String s[])
 	{
-	 System.out.println("Hello I am Subhrajit Dash,I am 22 Years Old");
+	 String name = new String("subhrajit");
+	 String name1 =new String("Subhrajit");
+	 if(name.equalsIgnoreCase(name1)) //name == name1
+	 {
+	 	System.out.println("Same");
+	 }
+	 else{
+	 	System.out.println("Not Same");
+	 }
 	}
 }
